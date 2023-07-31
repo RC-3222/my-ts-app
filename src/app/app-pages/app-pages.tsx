@@ -42,15 +42,14 @@ export const AppPages = () => {
             ? <Loader />
             : <div className={styles.cardGrid}>{data?.results?.map((item) => <Card item={item} key={item.id} />)}</div>}
         <div className={styles.pageControls}>
-            <Button onClick={() => {
-                if (pageNumber <= 1) return;
+            {data?.info?.pages && pageNumber > 1 && <Button onClick={() => {
                 setPageNumber((curr) => curr - 1)
-            }}>Previous</Button>
+            }}>Previous</Button>}
             <span className={styles.pageNumber}>{pageNumber}</span>
-            <Button onClick={() => {
-                if (data?.info?.pages && pageNumber >= data.info.pages) return;
+            {data?.info?.pages && pageNumber < data.info.pages && <Button onClick={() => {
+                //if (data?.info?.pages && pageNumber >= data.info.pages) return;
                 setPageNumber((curr) => curr + 1)
-            }}>Next</Button>
+            }}>Next</Button>}
         </div>
     </>
     );

@@ -10,12 +10,12 @@ import { AppPages } from './app-pages';
 
 import { Character } from '../types';
 
-type AppContextType = {
+interface IAppContext {
     currentItem: Character | null,
     setCurrentItem:(val:Character | null)=>void,
 }
 
-export const AppContext = createContext<AppContextType>({currentItem:null, setCurrentItem:(val)=>{}});
+export const AppContext = createContext<IAppContext>({currentItem:null, setCurrentItem:(val)=>{}});
 
 export const App = () => {
     const [currItem, setCurrItem] = useState<Character | null>(null);
