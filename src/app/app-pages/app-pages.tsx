@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Button } from '../../components/common/button';
 import { Loader } from '../../components/common/loader';
 import { Card } from '../../components/card';
@@ -14,7 +14,7 @@ export const AppPages = () => {
 
     const [data, setData] = useState<Response | null>(null)
 
-    const loadItems = async () => {
+    const loadItems = useCallback(async () => {
 
         setIsLoading(true);
 
@@ -31,11 +31,11 @@ export const AppPages = () => {
         }
 
         setIsLoading(false)
-    }
+    }, [pageNumber])
 
     useEffect(() => {
         loadItems()
-    }, [pageNumber])
+    }, [pageNumber, loadItems])
 
     return (<>
         {isLoading
